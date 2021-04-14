@@ -11,5 +11,13 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.NonRegisteringDriver
 #mybatis配置
 mybatis:
-  type-aliases-package: com.qrsx.login.model,;com.qrsx.commence.model
-  mapper-locations: classpath:mapping/login/*.xml,classpath:mapping/commence/*.xml
+  mapper-locations: classpath:mapping/admin/*/*.xml,classpath:mapping/commence/*.xml
+  type-aliases-package: com.qrsx.commence.data,;com.qrsx.admin.*.data
+  configuration:
+    map-underscore-to-camel-case: true
+    mapper:
+      mappers: com.gogle.mgt.dataaccess.mybatis.TkMapper #通用基类配置
+      identity: MYSQL
+#配置端口号
+server:
+  port: 10012
