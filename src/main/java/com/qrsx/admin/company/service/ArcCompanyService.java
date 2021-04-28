@@ -7,6 +7,7 @@ import com.github.pagehelper.PageInfo;
 import com.qrsx.admin.company.data.ArcCompany;
 import com.qrsx.admin.company.data.RespPageEntity;
 import com.qrsx.admin.company.mapper.ArcCompanyMapper;
+import com.qrsx.admin.person.data.ArcPerson;
 import com.qrsx.commence.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -67,12 +69,31 @@ public class ArcCompanyService {
     */
     public void deleteCompany(String socialCode) {
         if(StrUtil.isEmpty(socialCode)){
-            throw new ServiceException("删除公司时,主键为空");
+            throw new ServiceException("删除公司时,社会信用代码为空");
         }
         String[] arr = socialCode.split(",");
         List<String> list = Arrays.asList(arr);
         Example example = new Example(ArcCompany.class);
         example.createCriteria().andIn("socialCode",list);
         arcCompanyMapper.deleteByExample(example);
+    }
+    /**
+    * Description:公司详情
+    * date: 2021-04-17 21:24
+    * @author: '徐方斌'
+    */
+    public ArcCompany selectCompanyByCode(String socialCode) {
+        Example example = new Example(ArcCompany.class);
+        example.createCriteria().andEqualTo("socialCode",socialCode);
+        ArcCompany arcCompany = arcCompanyMapper.selectOneByExample(example);
+        return arcCompany;
+    }
+    /**
+    * Description:获取公司下拉框
+    * date: 2021-04-17 21:24
+    * @author: '徐方斌'
+    */
+    public List<Map<String,Object>> selectEnterpriseName() {
+        return arcCompanyMapper.selectEnterpriseName();
     }
 }

@@ -18,5 +18,7 @@ public class SysUserInfo implements Serializable {
     private String account;
     @Column
     private String password;
+    @Column
+    private String name;
 
 }

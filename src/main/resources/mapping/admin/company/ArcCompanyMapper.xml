@@ -31,4 +31,7 @@
                 or phone like concat('%',#{fuzzy},'%')
         </if>
     </select>
+    <select id="selectEnterpriseName" resultType="java.util.Map">
+        select social_code socialCode,enterprise_name enterpriseName from arc_company
+    </select>
 </mapper>

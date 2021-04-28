@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qrsx.commence.system.mapper.DictionaryMapper">
+
+    <select id="listDicName" resultType="java.lang.String">
+        select name from dic_publist
+    </select>
+    <select id="getDic" resultType="java.util.Map">
+        select code,name from dic_pubdes where dic_name = #{name}
+    </select>
+</mapper>
