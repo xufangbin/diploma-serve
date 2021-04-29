@@ -1,5 +1,7 @@
 package com.qrsx.admin.pubmenus.service;
 
+import cn.hutool.core.date.DateUnit;
+import cn.hutool.core.date.DateUtil;
 import com.qrsx.admin.company.data.ArcCompany;
 import com.qrsx.admin.company.data.RespPageEntity;
 import com.qrsx.admin.pubmenus.data.DicPubList;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Description :
@@ -38,5 +41,26 @@ public class DicPubListService {
         Long total = dicPubListMapper.selectTotal(fuzzy);
         pageEntity.setTotal(total);
         return pageEntity;
+    }
+    /**
+    * @Description :添加字典信息
+    * @Author : '徐方斌'
+    * @Date: 2021/4/29 10:55
+    * @Return
+    */
+    public void insertDicPubList(DicPubList dicPubList) {
+        dicPubList.setCreateDateTime(DateUtil.now());
+        dicPubList.setId(UUID.randomUUID().toString());
+        dicPubListMapper.insert(dicPubList);
+    }
+    /**
+    * @Description :修改字典信息
+    * @Author : '徐方斌'
+    * @Date: 2021/4/29 11:04
+    * @Return
+    */
+    public void updateDicPubList(DicPubList dicPubList) {
+        dicPubList.setModifyDateTime(DateUtil.now());
+        dicPubListMapper.updateByPrimaryKey(dicPubList);
     }
 }

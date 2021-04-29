@@ -4,9 +4,7 @@ import com.qrsx.admin.company.data.RespPageEntity;
 import com.qrsx.admin.pubmenus.data.DicPubList;
 import com.qrsx.admin.pubmenus.service.DicPubListService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 
@@ -30,5 +28,25 @@ public class DicPubListController implements Serializable {
     @GetMapping("/pubList")
     public RespPageEntity pageInfoDicPubList(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer pageSize, String fuzzy ){
         return dicPubListService.pageInfoDicPubList(page, pageSize, fuzzy);
+    }
+    /**
+    * @Description :添加字典信息
+    * @Author : '徐方斌'
+    * @Date: 2021/4/29 10:54
+    * @Return
+    */
+    @PostMapping("/pubList/add")
+    public void insertDicPubList(@RequestBody DicPubList dicPubList){
+        dicPubListService.insertDicPubList(dicPubList);
+    }
+    /**
+    * @Description :修改字典信息
+    * @Author : '徐方斌'
+    * @Date: 2021/4/29 11:03
+    * @Return
+    */
+    @PutMapping("/pubList/update")
+    public void updateDicPubList(@RequestBody DicPubList dicPubList){
+        dicPubListService.updateDicPubList(dicPubList);
     }
 }

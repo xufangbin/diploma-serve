@@ -10,7 +10,7 @@
         <if test="fuzzy != null and fuzzy != ''">
             where
             name like concat('%',#{fuzzy},'%')
-            or discription like concat('%',#{fuzzy},'%')
+            or description like concat('%',#{fuzzy},'%')
         </if>
         order by create_date_time desc
         limit #{page},#{pageSize}
@@ -20,7 +20,7 @@
         <if test="fuzzy != null and fuzzy != ''">
             where
             name like concat('%',#{fuzzy},'%')
-            or discription like concat('%',#{fuzzy},'%')
+            or description like concat('%',#{fuzzy},'%')
         </if>
     </select>
 </mapper>
